@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  nextjs:
+    container_name: ytb-downloader
+    image: ytb-downloader
+    restart: always
+    build: .
+    ports:
+      - 3000:3000
+    networks:
+      card:
+        ipv4_address: 172.21.0.32
+
+networks:
+  card:
+    name: card
+    ipam: 
+      config:
+        - subnet: 172.21.0.0/16
