@@ -2,14 +2,15 @@ version: "3.8"
 
 services:
 
-  <name>:
-    container_name: <name>
-    image: <name>
-    restart: always
+  fe:
+    container_name: fe
+    image: fe
     build: .
+    ports:
+      - 8000:80
     networks:
       card:
-        ipv4_address: 172.21.0.32
+        ipv4_address: 172.21.0.5
 
 networks:
   card:

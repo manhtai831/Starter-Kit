@@ -1,0 +1,9 @@
+node_modules
+.next
+.github
+.husky
+.yarn
+.git
+
+Dockerfile
+docker-compose.yml

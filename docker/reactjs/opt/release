@@ -1,0 +1,10 @@
+#!/bin/sh
+
+npm run build
+
+appName=misc-app
+docker exec -it card_nginx rm -rf /usr/share/nginx/html/$appName
+echo 'Task 1: Remove /usr/share/nginx/html/'$appName '... Success'
+
+docker cp build/ card_nginx:/usr/share/nginx/html/$appName
+echo 'Task 2: Copy  build/ ... to ... card_nginx:/usr/share/nginx/html/'$appName '... Success'

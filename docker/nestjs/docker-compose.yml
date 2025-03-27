@@ -1,15 +1,16 @@
-version: "3.8"
+version: '3.7'
 
 services:
 
-  <name>:
-    container_name: <name>
-    image: <name>
+  <app_name>:
+    hostname: <app_name>
+    image: <app_name>
+    container_name: <app_name>
     restart: always
     build: .
     networks:
       card:
-        ipv4_address: 172.21.0.32
+        ipv4_address: 172.21.0.3
 
 networks:
   card:
