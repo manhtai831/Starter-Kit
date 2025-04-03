@@ -2,7 +2,7 @@ FROM node:21-alpine AS base
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json yarn.lock ./
 
 RUN yarn install --frozen-lockfile
 
@@ -14,7 +14,7 @@ COPY --from=base /app/node_modules ./node_modules
 COPY . .
 
 RUN yarn build \
-    && yarn install --production --frozen-lockfile \
+    && yarn install --production --frozen-lockfile
 
 FROM node:21-alpine AS runner
 
