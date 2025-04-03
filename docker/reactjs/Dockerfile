@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm ci
+RUN yarn install --frozen-lockfile
 
 FROM node:21-alpine AS builder
 
@@ -13,7 +13,7 @@ WORKDIR /app
 COPY --from=base /app/node_modules ./node_modules
 COPY . .
 
-RUN npm run build
+RUN yarn build
 
 FROM nginx:1.27-alpine AS runner
 WORKDIR /app

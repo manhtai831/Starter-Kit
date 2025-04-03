@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm ci
+RUN yarn install --frozen-lockfile
 
 FROM node:21-alpine  AS builder
 
@@ -13,8 +13,8 @@ WORKDIR /app
 COPY --from=base /app/node_modules ./node_modules
 COPY . .
 
-RUN npm run build \
-    && npm prune --production \
+RUN yarn build \
+    && yarn install --production --frozen-lockfile \
     && rm -rf .next/cache
 
 FROM node:21-alpine AS runner
@@ -31,4 +31,4 @@ EXPOSE 3000
 
 ENV NODE_ENV=production
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
