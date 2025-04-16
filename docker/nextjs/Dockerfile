@@ -14,7 +14,7 @@ COPY --from=base /app/node_modules ./node_modules
 COPY . .
 
 RUN yarn build \
-    && yarn install --production --frozen-lockfile \
+    && npm prune --production
     && rm -rf .next/cache
 
 FROM node:21-alpine AS runner

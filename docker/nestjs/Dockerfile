@@ -14,7 +14,7 @@ COPY --from=base /app/node_modules ./node_modules
 COPY . .
 
 RUN yarn build \
-    && yarn install --production --frozen-lockfile
+    && npm prune --production
 
 FROM node:21-alpine AS runner
 
@@ -28,4 +28,4 @@ EXPOSE 3000
 
 ENV NODE_ENV=production
 
-CMD [ "yarn", "start:prod" ]
+CMD [ "npm", "run", "start:prod" ]
